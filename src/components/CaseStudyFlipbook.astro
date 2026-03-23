@@ -1,0 +1,31 @@
+---
+interface Props {
+  pdfUrl: string;
+}
+const { pdfUrl } = Astro.props;
+---
+<section class="py-32 relative overflow-hidden bg-white text-brand-bg">
+  <div class="container mx-auto px-6 max-w-5xl relative z-10 text-center">
+    <span class="text-brand-salmon font-bold uppercase text-xs tracking-[0.4em] mb-6 block animate-pulse">¿CÓMO LO HICE?</span>
+    <h2 class="text-4xl md:text-6xl font-black text-brand-bg mb-6 uppercase tracking-tighter italic">Explora la estrategia paso a paso</h2>
+    <p class="text-xl text-gray-500 mb-16 font-light">Hojeando el informe aquí.</p>
+    
+    <div class="group relative aspect-[4/3] md:aspect-video w-full bg-gray-50 rounded-[3rem] border border-gray-200 overflow-hidden shadow-2xl transition-transform duration-700 hover:scale-[1.01]">
+      <iframe src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0`} class="w-full h-full border-none grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700"></iframe>
+      
+      <!-- Overlay to encourage interaction -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+         <span class="bg-brand-salmon px-6 py-2 rounded-full text-white text-sm font-bold shadow-xl">Vista previa interactiva</span>
+      </div>
+    </div>
+    
+    <div class="mt-20 flex flex-col md:flex-row items-center justify-center gap-6">
+        <a href={pdfUrl} download class="px-12 py-5 bg-brand-salmon text-white font-bold rounded-full hover:bg-brand-magenta transition-all shadow-[0_15px_30px_rgba(255,87,87,0.3)] hover:-translate-y-1">
+            Descargar Informe PDF
+        </a>
+        <a href="/#portafolio" class="text-gray-500 hover:text-brand-bg transition-colors font-semibold flex items-center gap-2">
+           ← Volver al portafolio
+        </a>
+    </div>
+  </div>
+</section>

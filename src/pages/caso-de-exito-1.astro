@@ -1,66 +1,70 @@
 ---
+import Layout from "../layouts/Layout.astro";
 import CaseStudyLayout from "../layouts/CaseStudyLayout.astro";
+import CaseStudyHero from "../components/CaseStudyHero.astro";
+import CaseStudyResults from "../components/CaseStudyResults.astro";
+import CaseStudyStack from "../components/CaseStudyStack.astro";
+import CaseStudyFlipbook from "../components/CaseStudyFlipbook.astro";
 import { getLangFromUrl } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 
-const content = {
-  es: {
-    title: "Caso Inmobiliaria Leben",
-    subtitle: "De 69,000 contactos inactivos a un 40% de apertura",
-    description: "Una migración crítica y una limpieza profunda de datos que rescataron la reputación de un dominio en riesgo. Descubre cómo transformé una base de datos masiva en un canal de ventas de alta precisión mediante SQL, diseño estratégico y automatización.",
-    client: "Inmobiliaria Leben"
-  },
-  en: {
-    title: "Inmobiliaria Leben Case",
-    subtitle: "From 69,000 inactive contacts to a 40% open rate",
-    description: "A critical migration and deep data cleansing that rescued the reputation of a domain at risk. Discover how I transformed a massive database into a high-precision sales channel through SQL, strategic design, and automation.",
-    client: "Inmobiliaria Leben"
-  }
-};
+const isEs = lang === 'es';
 
-const t = content[lang];
+const content = {
+  hero: {
+    category: isEs ? "CASO LEBEN" : "LEBEN CASE",
+    title: isEs ? "De 69,000 contactos inactivos a un 40% de apertura: El caso Inmobiliaria Leben" : "From 69,000 inactive contacts to a 40% open rate: The Inmobiliaria Leben Case",
+    description: isEs ? "Una migración crítica y una limpieza profunda de datos que rescataron la reputación de un dominio en riesgo." : "A critical migration and deep data cleansing that rescued the reputation of a domain at risk.",
+    bgImage: "/images/cases/caso1-hero.jpg"
+  },
+  results: {
+    title: isEs ? "Métricas de Éxito" : "Success Metrics",
+    metrics: [
+      { 
+        icon: "🚀", 
+        label: isEs ? "Crecimiento de Apertura" : "Open Rate Growth", 
+        desc: isEs ? "Elevé la tasa de apertura de un 8.6% a un pico del 39.6%, multiplicando casi por 5 el alcance real y el interés de la audiencia en cada envío." : "I increased the open rate from 8.6% to a peak of 39.6%, multiplying the real reach and audience interest by nearly 5 with each delivery." 
+      },
+      { 
+        icon: "🛡️", 
+        label: isEs ? "Salud y Entregabilidad" : "Health & Deliverability", 
+        desc: isEs ? "Logré una limpieza profunda que redujo los rebotes duros de 4,087 a solo 5, blindando la reputación del dominio ante proveedores como Microsoft y Google." : "I achieved deep cleansing that reduced hard bounces from 4,087 to just 5, shielding the domain reputation before providers like Microsoft and Google." 
+      },
+      { 
+        icon: "📈", 
+        label: isEs ? "Conversión y Clics" : "Conversion & Clicks", 
+        desc: isEs ? "Incrementé el CTR de 0.92% a 3.70% mediante la implementación de plantillas UX interactivas y llamadas a la acción directas hacia WhatsApp y proyectos." : "I increased the CTR from 0.92% to 3.70% by implementing interactive UX templates and direct calls to action to WhatsApp and projects." 
+      }
+    ],
+    images: ["/images/cases/caso1-res1.jpg", "/images/cases/caso1-res2.jpg", "/images/cases/caso1-res3.jpg"]
+  },
+  stack: [
+    {
+      title: isEs ? "Estrategia de Migración" : "Migration Strategy",
+      desc: isEs ? "Ejecuté la transición técnica de Mailchimp a Brevo, incluyendo procesos de Warm-up de IP y configuración de protocolos de autenticación para asegurar el buzón de entrada." : "I executed the technical transition from Mailchimp to Brevo, including IP Warm-up processes and configuration of authentication protocols to ensure inbox delivery.",
+      image: "/images/cases/caso1-res1.jpg"
+    },
+    {
+      title: isEs ? "Data & SQL" : "Data & SQL",
+      desc: isEs ? "Utilicé consultas de SQL y lógica de datos para segmentar una base masiva de 69,000 registros, priorizando a los 11,000 usuarios con mayor potencial de conversión." : "I used SQL queries and data logic to segment a massive database of 69,000 records, prioritizing the 11,000 users with the greatest conversion potential.",
+      image: "/images/cases/caso1-res2.jpg"
+    },
+    {
+      title: isEs ? "Diseño & HTML" : "Design & HTML",
+      desc: isEs ? "Desarrollé estructuras de HTML optimizado con jerarquía visual de alta conversión, garantizando una visualización perfecta y profesional en dispositivos móviles y escritorio." : "I developed optimized HTML structures with high-conversion visual hierarchy, ensuring a perfect and professional display on mobile devices and desktops.",
+      image: "/images/cases/caso1-res3.jpg"
+    }
+  ],
+  pdfUrl: "/images/cases/caso1.pdf"
+};
 ---
 
-<CaseStudyLayout 
-  title={t.title}
-  subtitle={t.subtitle}
-  description={t.description}
-  client={t.client}
->
-  {lang === 'es' ? (
-    <>
-      <h3>Resultados Reales</h3>
-      <h2>Métricas de Éxito</h2>
-      <ul>
-        <li><strong>🚀 Crecimiento de Apertura:</strong> Elevé la tasa de apertura de un 8.6% a un pico del 39.6%, multiplicando casi por 5 el alcance real y el interés de la audiencia en cada envío.</li>
-        <li><strong>🛡️ Salud y Entregabilidad:</strong> Logré una limpieza profunda que redujo los rebotes duros de 4,087 a solo 5, blindando la reputación del dominio ante proveedores como Microsoft y Google.</li>
-        <li><strong>📈 Conversión y Clics:</strong> Incrementé el CTR de 0.92% a 3.70% mediante la implementación de plantillas UX interactivas y llamadas a la acción directas hacia WhatsApp y proyectos.</li>
-      </ul>
-
-      <h3>Implementación Avanzada</h3>
-      <h2>Stack Tecnológico</h2>
-      <p>Utilicé un robusto ecosistema centrado en <strong>Salesforce Marketing Cloud</strong>, manipulando datos vía <strong>SQL</strong> para segmentaciones granulares y diseñando piezas en <strong>HTML/CSS</strong> optimizado para máxima entregabilidad.</p>
-      
-      <h3>Data & SQL</h3>
-      <p>Extraje y saneé registros históricos, identificando comportamientos de compra para reactivar usuarios legítimos y descartar perfiles tóxicos que hundían la reputación del dominio.</p>
-    </>
-  ) : (
-    <>
-      <h3>Real Results</h3>
-      <h2>Success Metrics</h2>
-      <ul>
-        <li><strong>🚀 Open Rate Growth:</strong> Increased the open rate from 8.6% to a peak of 39.6%, multiplying the real reach and audience interest by nearly 5 in every mailing.</li>
-        <li><strong>🛡️ Health & Deliverability:</strong> Achieved deep cleaning that reduced hard bounces from 4,087 to just 5, shielding the domain reputation before providers like Microsoft and Google.</li>
-        <li><strong>📈 Conversion & Clicks:</strong> Increased CTR from 0.92% to 3.70% through implementation of interactive UX templates and direct CTAs to WhatsApp and projects.</li>
-      </ul>
-
-      <h3>Advanced Implementation</h3>
-      <h2>Technological Stack</h2>
-      <p>I used a robust ecosystem centered on <strong>Salesforce Marketing Cloud</strong>, manipulating data via <strong>SQL</strong> for granular segmentations and designing pieces in <strong>HTML/CSS</strong> optimized for maximum deliverability.</p>
-      
-      <h3>Data & SQL</h3>
-      <p>I extracted and sanitized historical records, identifying buying behaviors to reactivate legitimate users and discard toxic profiles that were sinking the domain reputation.</p>
-    </>
-  )}
+<CaseStudyLayout title={content.hero.title} description={content.hero.description}>
+  <main>
+    <CaseStudyHero {...content.hero} />
+    <CaseStudyResults {...content.results} />
+    <CaseStudyStack items={content.stack} />
+    <CaseStudyFlipbook pdfUrl={content.pdfUrl} />
+  </main>
 </CaseStudyLayout>

@@ -1,66 +1,69 @@
 ---
+import Layout from "../layouts/Layout.astro";
 import CaseStudyLayout from "../layouts/CaseStudyLayout.astro";
+import CaseStudyHero from "../components/CaseStudyHero.astro";
+import CaseStudyResults from "../components/CaseStudyResults.astro";
+import CaseStudyStack from "../components/CaseStudyStack.astro";
+import CaseStudyFlipbook from "../components/CaseStudyFlipbook.astro";
 import { getLangFromUrl } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
+const isEs = lang === 'es';
 
 const content = {
-  es: {
-    title: "Caso Clínica Costanera",
-    subtitle: "Seguridad y Gobierno de Datos: Modernizando el ecosistema digital",
-    description: "En el sector salud, la confianza es el activo más valioso. Descubre cómo implementé un blindaje técnico de reputación (DMARC/SPF) y una arquitectura de datos segura para transformar un canal fragmentado en una infraestructura corporativa escalable.",
-    client: "Clínica Costanera"
+  hero: {
+    category: isEs ? "CASO CLÍNICA COSTANERA" : "CLINICA COSTANERA CASE",
+    title: isEs ? "Seguridad Digital y Gobierno de Datos: El caso Clínica Costanera" : "Digital Security and Data Governance: The Clinica Costanera Case",
+    description: isEs ? "Implementación de protocolos de seguridad avanzada y optimización de engagement para un sector altamente regulado." : "Implementation of advanced security protocols and engagement optimization for a highly regulated sector.",
+    bgImage: "/images/cases/caso2-hero.png"
   },
-  en: {
-    title: "Clínica Costanera Case",
-    subtitle: "Security and Data Governance: Modernizing the digital ecosystem",
-    description: "In the health sector, trust is the most valuable asset. Discover how I implemented a technical reputation shield (DMARC/SPF) and a secure data architecture to transform a fragmented channel into a scalable corporate infrastructure.",
-    client: "Clínica Costanera"
-  }
+  results: {
+    title: isEs ? "Gestión de Rendimiento" : "Performance Management",
+    metrics: [
+      { 
+        icon: "🛡️", 
+        label: isEs ? "Blindaje de Reputación" : "Reputation Shielding", 
+        desc: isEs ? "Implementación técnica de DMARC, SPF y DKIM para asegurar la integridad de las comunicaciones médicas y evitar suplantaciones." : "Technical implementation of DMARC, SPF, and DKIM to ensure medical communication integrity and prevent spoofing." 
+      },
+      { 
+        icon: "📈", 
+        label: isEs ? "Optimización del Engagement" : "Engagement Optimization", 
+        desc: isEs ? "Aumento sostenido en la tasa de apertura mediante personalización dinámica basada en el historial de citas y especialidades médicas." : "Sustained increase in open rates through dynamic personalization based on appointment history and medical specialties." 
+      },
+      { 
+        icon: "⚖️", 
+        label: isEs ? "Gobierno de Datos" : "Data Governance", 
+        desc: isEs ? "Auditoría y limpieza de datos bajo normativas HIPAA y GDPR, asegurando el tratamiento ético y seguro de información sensible." : "Data auditing and cleansing under HIPAA and GDPR regulations, ensuring ethical and secure handling of sensitive information." 
+      }
+    ],
+    images: ["/images/cases/caso2-res1.jpg", "/images/cases/caso2-res2.jpg", "/images/cases/caso2-res3.jpg"]
+  },
+  stack: [
+    {
+      title: isEs ? "Protocolos de Seguridad" : "Security Protocols",
+      desc: isEs ? "Configuración de capas de autenticación avanzada para proteger la privacidad del paciente y la integridad del dominio institucional." : "Configuration of advanced authentication layers to protect patient privacy and institutional domain integrity.",
+      image: "/images/cases/caso2-res2.jpg"
+    },
+    {
+      title: isEs ? "Proveedores de Servicio" : "Service Providers",
+      desc: isEs ? "Evaluación y migración a infraestructuras de envío de alta reputación médica, garantizando tasas de entrega superiores al 99%." : "Evaluation and migration to high-reputation medical delivery infrastructures, guaranteeing delivery rates above 99%.",
+      image: "/images/cases/caso2-res3.jpg"
+    },
+    {
+      title: isEs ? "Control de Accesos" : "Access Control",
+      desc: isEs ? "Segmentación técnica de bases de datos para limitar el acceso a información sensible según el rol del personal administrativo." : "Technical database segmentation to limit sensitive information access based on administrative staff role.",
+      image: "/images/cases/caso2-res4.jpg"
+    }
+  ],
+  pdfUrl: "/images/cases/caso2.pdf"
 };
-
-const t = content[lang];
 ---
 
-<CaseStudyLayout 
-  title={t.title}
-  subtitle={t.subtitle}
-  description={t.description}
-  client={t.client}
->
-  {lang === 'es' ? (
-    <>
-      <h3>Gestión de Rendimiento</h3>
-      <h2>Métricas de Control</h2>
-      <ul>
-        <li><strong>🛡️ Blindaje de Reputación:</strong> Alcancé el 100% de autenticación en los envíos mediante protocolos globales (DMARC, SPF, DKIM), eliminando riesgos de phishing.</li>
-        <li><strong>📈 Optimización del Engagement:</strong> Logré estabilizar y aumentar la Tasa de Apertura y el CTOR, manteniendo el interés de los pacientes a pesar de flujos masivos de citas.</li>
-        <li><strong>⚖️ Gobierno de Datos:</strong> Implementé un modelo de Saneamiento de First-Party Data, garantizando el cumplimiento normativo en el manejo de información sensible de salud.</li>
-      </ul>
-
-      <h3>Arquitectura Corporativa</h3>
-      <h2>Stack & Seguridad</h2>
-      <p>Implementación técnica en <strong>ActiveCampaign Enterprise</strong>, integrando capas de seguridad personalizadas y protocolos de autenticación de dominio avanzados.</p>
-      
-      <h3>Due Diligence Tecnológico</h3>
-      <p>Realicé una auditoría técnica profunda de los proveedores actuales para consolidar la infraestructura y asegurar que cada punto de contacto con el paciente fuera seguro y trazable.</p>
-    </>
-  ) : (
-    <>
-      <h3>Performance Management</h3>
-      <h2>Control Metrics</h2>
-      <ul>
-        <li><strong>🛡️ Reputation Shielding:</strong> Achieved 100% authentication in mailings through global protocols (DMARC, SPF, DKIM), eliminating phishing risks.</li>
-        <li><strong>📈 Engagement Optimization:</strong> Managed to stabilize and increase the Open Rate and CTOR, maintaining patient interest despite massive appointment flows.</li>
-        <li><strong>⚖️ Data Governance:</strong> Implemented a First-Party Data Sanitization model, ensuring regulatory compliance in the management of sensitive health information.</li>
-      </ul>
-
-      <h3>Corporate Architecture</h3>
-      <h2>Stack & Security</h2>
-      <p>Technical implementation in <strong>ActiveCampaign Enterprise</strong>, integrating custom security layers and advanced domain authentication protocols.</p>
-      
-      <h3>Technological Due Diligence</h3>
-      <p>I conducted a deep technical audit of current providers to consolidate infrastructure and ensure every patient touchpoint was secure and traceable.</p>
-    </>
-  )}
+<CaseStudyLayout title={content.hero.title} description={content.hero.description}>
+  <main>
+    <CaseStudyHero {...content.hero} />
+    <CaseStudyResults {...content.results} />
+    <CaseStudyStack items={content.stack} />
+    <CaseStudyFlipbook pdfUrl={content.pdfUrl} />
+  </main>
 </CaseStudyLayout>
