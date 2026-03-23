@@ -10,13 +10,14 @@
   
   /* Font Families */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Inter', system-ui, sans-serif;
 }
 
 :root {
   background-color: var(--color-brand-bg);
   color: white;
   scroll-behavior: smooth;
-  font-family: var(--font-sans);
+  font-family: var(--font-sans) !important;
 }
 
 body {
