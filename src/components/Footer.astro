@@ -1,0 +1,50 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const currentYear = new Date().getFullYear();
+---
+<footer class="w-full border-t border-white/10 bg-brand-bg/80 backdrop-blur-md pt-16 pb-8 text-center sm:text-left">
+  <div class="container mx-auto px-6 max-w-7xl">
+    
+    <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12">
+      <div class="flex flex-col items-center md:items-start max-w-sm">
+        <h4 class="text-2xl font-bold text-white mb-2">Mónica Montúfar</h4>
+        <p class="text-gray-500 font-light text-sm">
+          Especialista en email marketing y automatización.
+        </p>
+        
+        <div class="flex gap-4 mt-6">
+          <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-brand-salmon hover:border-brand-salmon transition-colors">
+            in
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-12 text-sm">
+        <div>
+          <h5 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Navegación</h5>
+          <ul class="space-y-3">
+            <li><a href="#fortalezas" class="text-gray-500 hover:text-brand-cyan transition-colors">Fortalezas</a></li>
+            <li><a href="#servicios" class="text-gray-500 hover:text-brand-cyan transition-colors">Servicios</a></li>
+            <li><a href="#portafolio" class="text-gray-500 hover:text-brand-cyan transition-colors">Portafolio</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Legales</h5>
+          <ul class="space-y-3">
+            <li><a href="/legal" class="text-gray-500 hover:text-brand-cyan transition-colors">Privacidad</a></li>
+            <li><a href="/legal" class="text-gray-500 hover:text-brand-cyan transition-colors">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+      <p>{t('footer.rights')} &copy; Mónica Montúfar {currentYear}</p>
+      <p>{t('footer.design')}</p>
+    </div>
+
+  </div>
+</footer>

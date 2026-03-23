@@ -1,0 +1,51 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
+}
+
+const {
+  title = "Mónica Montúfar - Especialista en Email Marketing y Automatización",
+  description = "Transformo bases de datos en motores de ingresos mediante arquitecturas de automatización y estrategias de First-Party Data.",
+  image = "/og-image.png",
+  type = "website",
+} = Astro.props;
+
+// Requerido para URLs absolutas en OGs
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Manejo Anti-Canibalización i18n -->
+<link rel="alternate" href={`${Astro.url.origin}/`} hreflang="es" />
+<link rel="alternate" href={`${Astro.url.origin}/en/`} hreflang="en" />
+<link rel="alternate" href={`${Astro.url.origin}/`} hreflang="x-default" />
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />

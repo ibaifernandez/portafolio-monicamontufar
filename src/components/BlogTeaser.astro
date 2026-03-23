@@ -1,0 +1,23 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<section class="py-24 relative overflow-hidden" id="blog">
+  <div class="container mx-auto px-6 max-w-5xl relative z-10">
+    <div class="bg-gradient-to-r from-brand-salmon/20 to-brand-magenta/20 border border-white/10 rounded-[3rem] p-10 md:p-16 text-center backdrop-blur-lg shadow-2xl relative overflow-hidden">
+      <!-- Decor -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-brand-salmon/30 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+      
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6 relative z-10">{t('blog.title')} <span class="text-white">{t('blog.title_accent')}</span></h2>
+      <p class="text-xl text-gray-200 leading-relaxed max-w-2xl mx-auto mb-10 relative z-10">
+        {lang === 'es' ? "Te invito a un viaje de descubrimiento a través de mi blog, donde cada entrada está diseñada para informar, inspirar y entretener." : "I invite you to a journey of discovery through my blog, where each entry is designed to inform, inspire and entertain."}
+      </p>
+      
+      <a href="#blog" class="relative z-10 inline-flex items-center gap-3 px-8 py-4 bg-white text-brand-bg font-bold rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+        {lang === 'es' ? "Descúbrelo" : "Discover it"} <span class="text-xl">→</span>
+      </a>
+    </div>
+  </div>
+</section>

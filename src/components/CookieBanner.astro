@@ -1,0 +1,46 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 w-full z-[100] p-6 lg:p-8 translate-y-full transition-transform duration-500 ease-out hidden">
+  <div class="max-w-7xl mx-auto bg-brand-bg/95 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-[2rem] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex-1">
+      <h4 class="text-lg font-bold text-white mb-2">Cookies</h4>
+      <p class="text-gray-400 text-sm leading-relaxed max-w-2xl">
+        {t('cookies.text')}
+      </p>
+    </div>
+    <div class="flex items-center gap-4">
+      <button id="accept-cookies" class="px-8 py-3 bg-brand-salmon hover:bg-red-500 text-white font-semibold rounded-full transition-all duration-300 whitespace-nowrap">
+        {t('cookies.accept')}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('accept-cookies');
+
+  if (banner && acceptBtn) {
+    const cookiesAccepted = localStorage.getItem('cookies-accepted');
+    
+    if (!cookiesAccepted) {
+      banner.classList.remove('hidden');
+      setTimeout(() => {
+        banner.classList.remove('translate-y-full');
+      }, 500);
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookies-accepted', 'true');
+      banner.classList.add('translate-y-full');
+      setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 500);
+    });
+  }
+</script>

@@ -1,0 +1,82 @@
+---
+// Hero.astro
+import Image from "astro/components/Image.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="relative w-full min-h-[90vh] flex items-center pt-24 pb-12">
+  <div class="container mx-auto px-6 max-w-7xl">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Text Content -->
+      <div class="order-2 lg:order-1 flex flex-col items-start gap-4">
+        
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+          <img src="/images/icon.png" alt="Icon" class="w-5 h-5 object-contain" />
+          <span class="text-sm font-medium tracking-wide text-brand-salmon">{t('hero.greeting')}</span>
+        </div>
+        
+        <!-- Main Heading -->
+        <h1 class="text-5xl lg:text-7xl font-bold tracking-tight mt-4">
+          {t('hero.title')} <span class="text-brand-salmon">{t('hero.name')}</span>
+        </h1>
+        
+        <!-- Subtitles -->
+        <h2 class="text-xl lg:text-2xl font-light text-gray-300 mt-2">
+          {t('hero.subtitle')}
+        </h2>
+        <h3 class="text-lg lg:text-xl font-medium text-brand-cyan mt-1">
+          Especialista en Email Marketing y automatización
+        </h3>
+
+        <!-- Paragraph -->
+        <p class="text-gray-400 mt-6 leading-relaxed max-w-xl text-lg">
+          {t('hero.description')}
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center gap-4 mt-8">
+          <a href="#portafolio" class="px-8 py-3.5 bg-brand-salmon hover:bg-red-500 text-white font-semibold rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(255,87,87,0.3)] hover:shadow-[0_0_30px_rgba(255,87,87,0.5)] flex items-center gap-2">
+            {t('hero.cta.portfolio')} <span class="text-xl">↘</span>
+          </a>
+          <a href="/cv.pdf" download="Mónica Montufar CV 2026" class="px-8 py-3.5 bg-white text-brand-bg font-semibold rounded-full hover:bg-gray-200 transition-all duration-300 flex items-center gap-2">
+            {t('hero.cta.cv')} 
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Image Content -->
+      <div class="order-1 lg:order-2 flex justify-center lg:justify-end relative">
+        <div class="relative w-72 h-72 sm:w-96 sm:h-96 lg:w-[450px] lg:h-[450px]">
+          <!-- Deco Background behind image -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-brand-salmon/20 to-brand-cyan/20 rounded-full blur-2xl animate-pulse"></div>
+          
+          <!-- Arch-shaped frame for the picture (based on screenshot design) -->
+          <div class="relative w-full h-full overflow-hidden rounded-[40%_40%_0_0] border-t-4 border-white/10 bg-white/5 backdrop-blur-sm">
+            <img 
+               src="/images/Mon.png" 
+               alt="Mónica Montúfar" 
+               class="w-full h-full object-cover object-top"
+               fetchpriority="high"
+            />
+          </div>
+
+          <!-- Floating Badge (10+ Años) -->
+          <div class="absolute -right-4 top-1/4 bg-brand-bg/80 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-2xl">
+            <div class="flex items-center gap-1 text-brand-salmon mb-1">
+              ★★★★★
+            </div>
+            <p class="font-bold text-xl">{t('hero.exp')}</p>
+            <p class="text-sm text-gray-400">{t('hero.exp_label')}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

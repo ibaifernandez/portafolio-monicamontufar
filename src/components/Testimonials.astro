@@ -1,0 +1,58 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const testimonials = [
+  {
+    name: "Ibai Fernández",
+    role: "Vibe Coder & Full-Stack Developer",
+    text: lang === 'es' ? "Después de más de 6 años de trabajo codo con codo con ella, puedo decir que Mónica es el activo más definitivo que cualquier empresario o compañero podría desear, no sólo por su valor profesional sino también por su valor humano. Implacable ante cualquier reto que se le presente, inmensamente creativa en sus planteamientos y definitivamente eficaz en sus aplicaciones." : "After more than 6 years of working side by side with her, I can say that Monica is the most definitive asset any businessman or partner could wish for, not only for her professional value but also for her human value. Implacable in the face of any challenge that comes her way, immensely creative in her approaches and definitely effective in her applications.",
+    image: "/images/elementor/thumbs/Monica-Montufar-rkcwo5t22tvhdn5855w7s93rlsc25uan52l8lrmvm0.jpeg"
+  },
+  {
+    name: "Bani Barranco",
+    role: "AI Automation for Future-Proof Agencies",
+    text: lang === 'es' ? "Mónica llegó al equipo para hacer unas vacaciones. Eso hace más de un año, es imposible dejarla ir una vez notas el valor que agrega a las operaciones. Pasó de apoyarnos a maquetar emails a llevar solita la automatización Salesforce de un banco comercial. Es increíble, buena onda, de pensamiento crítico y tiene inteligencia emocional." : "Monica joined the team for a holiday cover. That was over a year ago; it's impossible to let her go once you notice the value she adds to operations. She went from helping us code emails to single-handedly managing Salesforce automation for a commercial bank. She is incredible, cool, a critical thinker, and has emotional intelligence.",
+    image: "/images/elementor/thumbs/MonMont-rkcwo5t22tvhdn5855w7s93rlsc25uan52l8lrmvm0.jpg" 
+  },
+  {
+    name: "Rose Picón",
+    role: "AI Automation for Future-Proof Agencies",
+    text: lang === 'es' ? "He tenido la suerte de trabajar con Mónica en diferentes etapas y siempre ha sido una experiencia increíble. Primero como mi jefa directa, donde demostró un liderazgo excepcional: sabe delegar con equilibrio, organizar al equipo con claridad y exigir resultados de manera justa y motivadora. Más allá de lo profesional, Mónica es una persona íntegra y generosa." : "I've been lucky enough to work with Monica at different stages and it's always been an incredible experience. First as my direct manager, where she showed exceptional leadership: she knows how to delegate with balance, organize the team with clarity, and demand results in a fair and motivating way. Beyond the professional, Monica is a person of integrity and generosity.",
+    image: "/images/icon.png"
+  }
+];
+---
+<section class="py-24 relative overflow-hidden">
+  <!-- Top glow -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-brand-cyan/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+  <div class="container mx-auto px-6 max-w-7xl relative z-10">
+    <div class="text-center mb-16 max-w-2xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight">{t('testimonials.title')} <span class="text-brand-cyan">{t('testimonials.title_accent')}</span></h2>
+      <p class="text-xl text-brand-salmon font-light mt-4">{lang === 'es' ? "y quieren decirte algo." : "and they want to tell you something."}</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {testimonials.map(t => (
+        <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl relative hover:bg-white/10 transition-colors duration-300 shadow-xl flex flex-col h-full">
+          <!-- Quotes icon decoration -->
+          <div class="absolute top-6 right-6 text-brand-cyan/20 text-6xl font-serif">"</div>
+          
+          <div class="flex items-center gap-4 mb-6">
+            <img src={t.image} alt={t.name} class="w-14 h-14 rounded-full object-cover border-2 border-brand-salmon/50 bg-brand-bg" loading="lazy" />
+            <div>
+              <h4 class="font-bold text-white text-lg">{t.name}</h4>
+              <p class="text-xs text-brand-cyan line-clamp-2">{t.role}</p>
+            </div>
+          </div>
+          <p class="text-gray-400 leading-relaxed text-sm italic flex-1">
+            "{t.text}"
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

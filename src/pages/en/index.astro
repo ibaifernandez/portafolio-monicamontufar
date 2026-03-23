@@ -1,0 +1,32 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import ClientBanner from '../../components/ClientBanner.astro';
+import Features from '../../components/Features.astro';
+import ServicesStack from '../../components/ServicesStack.astro';
+import WhyMe from '../../components/WhyMe.astro';
+import Skills from '../../components/Skills.astro';
+import Portfolio from '../../components/Portfolio.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import BlogTeaser from '../../components/BlogTeaser.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout>
+	<main>
+		<Hero />
+		<ClientBanner />
+		<Features />
+		<ServicesStack />
+		<WhyMe />
+		<Skills />
+		<Portfolio />
+		<Testimonials />
+		<BlogTeaser />
+	</main>
+	<Footer />
+</Layout>
