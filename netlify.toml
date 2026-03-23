@@ -23,5 +23,5 @@
 # El comando "exit 0" le dice a Netlify que no hay cambios que desplegar,
 # deteniendo el build antes de gastar minutos innecesarios.
 # Puedes quitar esto o comentarlo cuando quieras despegar una rama específica.
-[build]
-  ignore = "exit 0"
+# [build]
+#   ignore = "exit 0"
