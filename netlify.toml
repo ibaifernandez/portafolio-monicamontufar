@@ -19,9 +19,8 @@
 [build.processing.images]
   compress = true
 
-# Bloqueo de deploys automáticos para ahorrar minutos
-# El comando "exit 0" le dice a Netlify que no hay cambios que desplegar,
-# deteniendo el build antes de gastar minutos innecesarios.
-# Puedes quitar esto o comentarlo cuando quieras despegar una rama específica.
-# [build]
-#   ignore = "exit 0"
+# [SISTEMA DE DEPLOY INTELIGENTE]
+# Solo realiza el build si el mensaje de commit incluye el flag "[deploy]"
+# Ejemplo: git commit -m "feat: New feature [deploy]"
+[build]
+  ignore = "git log -1 --pretty=%B | grep -qv '\\[deploy\\]'"
