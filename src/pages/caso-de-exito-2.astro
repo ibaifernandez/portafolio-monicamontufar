@@ -1,0 +1,66 @@
+---
+import CaseStudyLayout from "../layouts/CaseStudyLayout.astro";
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  es: {
+    title: "Caso Clínica Costanera",
+    subtitle: "Seguridad y Gobierno de Datos: Modernizando el ecosistema digital",
+    description: "En el sector salud, la confianza es el activo más valioso. Descubre cómo implementé un blindaje técnico de reputación (DMARC/SPF) y una arquitectura de datos segura para transformar un canal fragmentado en una infraestructura corporativa escalable.",
+    client: "Clínica Costanera"
+  },
+  en: {
+    title: "Clínica Costanera Case",
+    subtitle: "Security and Data Governance: Modernizing the digital ecosystem",
+    description: "In the health sector, trust is the most valuable asset. Discover how I implemented a technical reputation shield (DMARC/SPF) and a secure data architecture to transform a fragmented channel into a scalable corporate infrastructure.",
+    client: "Clínica Costanera"
+  }
+};
+
+const t = content[lang];
+---
+
+<CaseStudyLayout 
+  title={t.title}
+  subtitle={t.subtitle}
+  description={t.description}
+  client={t.client}
+>
+  {lang === 'es' ? (
+    <>
+      <h3>Gestión de Rendimiento</h3>
+      <h2>Métricas de Control</h2>
+      <ul>
+        <li><strong>🛡️ Blindaje de Reputación:</strong> Alcancé el 100% de autenticación en los envíos mediante protocolos globales (DMARC, SPF, DKIM), eliminando riesgos de phishing.</li>
+        <li><strong>📈 Optimización del Engagement:</strong> Logré estabilizar y aumentar la Tasa de Apertura y el CTOR, manteniendo el interés de los pacientes a pesar de flujos masivos de citas.</li>
+        <li><strong>⚖️ Gobierno de Datos:</strong> Implementé un modelo de Saneamiento de First-Party Data, garantizando el cumplimiento normativo en el manejo de información sensible de salud.</li>
+      </ul>
+
+      <h3>Arquitectura Corporativa</h3>
+      <h2>Stack & Seguridad</h2>
+      <p>Implementación técnica en <strong>ActiveCampaign Enterprise</strong>, integrando capas de seguridad personalizadas y protocolos de autenticación de dominio avanzados.</p>
+      
+      <h3>Due Diligence Tecnológico</h3>
+      <p>Realicé una auditoría técnica profunda de los proveedores actuales para consolidar la infraestructura y asegurar que cada punto de contacto con el paciente fuera seguro y trazable.</p>
+    </>
+  ) : (
+    <>
+      <h3>Performance Management</h3>
+      <h2>Control Metrics</h2>
+      <ul>
+        <li><strong>🛡️ Reputation Shielding:</strong> Achieved 100% authentication in mailings through global protocols (DMARC, SPF, DKIM), eliminating phishing risks.</li>
+        <li><strong>📈 Engagement Optimization:</strong> Managed to stabilize and increase the Open Rate and CTOR, maintaining patient interest despite massive appointment flows.</li>
+        <li><strong>⚖️ Data Governance:</strong> Implemented a First-Party Data Sanitization model, ensuring regulatory compliance in the management of sensitive health information.</li>
+      </ul>
+
+      <h3>Corporate Architecture</h3>
+      <h2>Stack & Security</h2>
+      <p>Technical implementation in <strong>ActiveCampaign Enterprise</strong>, integrating custom security layers and advanced domain authentication protocols.</p>
+      
+      <h3>Technological Due Diligence</h3>
+      <p>I conducted a deep technical audit of current providers to consolidate infrastructure and ensure every patient touchpoint was secure and traceable.</p>
+    </>
+  )}
+</CaseStudyLayout>

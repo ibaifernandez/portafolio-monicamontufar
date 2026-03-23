@@ -1,0 +1,89 @@
+---
+// src/layouts/CaseStudyLayout.astro
+import Layout from "./Layout.astro";
+import SEO from "../components/SEO.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  client: string;
+  description: string;
+}
+
+const { title, subtitle, client, description } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={`${title} - ${client}`}>
+  <SEO title={title} description={description} />
+  
+  <main class="pt-32 pb-24 relative overflow-hidden">
+    <!-- Background Decor -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-screen bg-gradient-to-b from-brand-bg via-brand-bg/50 to-transparent pointer-events-none -z-10"></div>
+    <div class="absolute top-20 left-1/4 w-96 h-96 bg-brand-salmon/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+    <div class="container mx-auto px-6 max-w-5xl">
+      <!-- Header -->
+      <div class="mb-16">
+        <a href={lang === 'es' ? "/#portafolio" : "/en/#portafolio"} class="inline-flex items-center gap-2 text-brand-salmon hover:underline mb-8 group">
+          <span class="group-hover:-translate-x-1 transition-transform">←</span> {lang === 'es' ? "Volver al portafolio" : "Back to portfolio"}
+        </a>
+        <div class="flex items-center gap-4 mb-4">
+          <span class="px-4 py-1 bg-brand-salmon/20 text-brand-salmon border border-brand-salmon/30 rounded-full text-sm font-bold uppercase tracking-wider">
+            {lang === 'es' ? "Caso de Éxito" : "Case Study"}
+          </span>
+          <span class="text-gray-400 font-mono text-sm tracking-tighter">{client}</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
+          {subtitle}
+        </h1>
+        <p class="text-2xl font-light text-brand-cyan mb-8 leading-relaxed max-w-3xl">
+          {description}
+        </p>
+      </div>
+
+      <!-- Main Content Slot -->
+      <div class="prose prose-invert prose-brand max-w-none">
+        <slot />
+      </div>
+
+      <!-- Final CTA -->
+      <div class="mt-24 p-12 bg-white/5 border border-white/10 rounded-[3rem] text-center backdrop-blur-lg">
+        <h2 class="text-3xl font-bold mb-6">{lang === 'es' ? "¿Tienes un reto similar?" : "Do you have a similar challenge?"}</h2>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+          {lang === 'es' ? "Hablemos sobre cómo puedo ayudarte a transformar tus datos en ingresos reales." : "Let's talk about how I can help you transform your data into real revenue."}
+        </p>
+        <a href="mailto:hola@monicamontufar.com" class="inline-block px-10 py-4 bg-brand-salmon text-brand-bg font-bold rounded-full hover:scale-105 transition-transform shadow-xl">
+          {lang === 'es' ? "Contactar ahora" : "Contact now"}
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style is:global>
+  .prose h2 {
+    @apply text-3xl font-bold mt-16 mb-8 text-white tracking-tight;
+  }
+  .prose h3 {
+    @apply text-xl font-bold mt-12 mb-4 text-brand-salmon uppercase tracking-widest;
+  }
+  .prose p {
+    @apply text-xl text-gray-300 leading-relaxed mb-8;
+  }
+  .prose ul {
+    @apply space-y-4 mb-12;
+  }
+  .prose li {
+    @apply text-xl text-gray-300 list-none flex items-start gap-3;
+  }
+  .prose li::before {
+    content: "→";
+    @apply text-brand-salmon font-bold flex-shrink-0;
+  }
+  .prose strong {
+    @apply text-brand-cyan font-bold;
+  }
+</style>
