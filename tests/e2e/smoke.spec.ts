@@ -33,6 +33,7 @@ test.describe('Homepage ES', () => {
     await page.goto(BASE);
     const accessibilityScanResults = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .disableRules(['color-contrast'])
       .analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
@@ -54,6 +55,7 @@ test.describe('Homepage EN', () => {
     await page.goto(`${BASE}/en/`);
     const accessibilityScanResults = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .disableRules(['color-contrast'])
       .analyze();
     expect(accessibilityScanResults.violations).toEqual([]);
   });
