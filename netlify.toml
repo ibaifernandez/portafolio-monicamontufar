@@ -1,6 +1,9 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  # [SMART DEPLOY] Solo dispara el build si hay cambios en código fuente o activos.
+  # Ignora cambios en docs, metadatos y archivos de sistema.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- src/ public/ package.json package-lock.json astro.config.mjs netlify.toml"
 
 [build.processing]
   skip_processing = false
@@ -18,10 +21,3 @@
 
 [build.processing.images]
   compress = true
-
-# [SISTEMA DE DEPLOY INTELIGENTE]
-# Solo realiza el build si hay cambios en el código fuente o activos críticos.
-# Ignora cambios en documentación, logs y archivos de sistema.
-[build]
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF . -- ':!docs' ':!.gemini' ':!task.md' ':!walkthrough.md' ':!ROADMAP.md' ':!CHANGELOG.md' ':!BACKLOG.md'"
-

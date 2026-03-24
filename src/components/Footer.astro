@@ -24,17 +24,17 @@ const currentYear = new Date().getFullYear();
 
       <div class="grid grid-cols-2 gap-12 text-sm">
         <div>
-          <h5 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Navegación</h5>
+          <h5 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">{lang === 'es' ? 'Navegación' : 'Navigation'}</h5>
           <ul class="space-y-3">
-            <li><a href="#fortalezas" class="text-gray-500 hover:text-brand-cyan transition-colors">Fortalezas</a></li>
-            <li><a href="#servicios" class="text-gray-500 hover:text-brand-cyan transition-colors">Servicios</a></li>
-            <li><a href="#portafolio" class="text-gray-500 hover:text-brand-cyan transition-colors">Portafolio</a></li>
+            <li><a href={lang === 'es' ? "/#fortalezas" : "/en/#fortalezas"} class="text-gray-500 hover:text-brand-cyan transition-colors">{lang === 'es' ? 'Fortalezas' : 'Strengths'}</a></li>
+            <li><a href={lang === 'es' ? "/#servicios" : "/en/#servicios"} class="text-gray-500 hover:text-brand-cyan transition-colors">{lang === 'es' ? 'Servicios' : 'Services'}</a></li>
+            <li><a href={lang === 'es' ? "/#portafolio" : "/en/#portafolio"} class="text-gray-500 hover:text-brand-cyan transition-colors">{lang === 'es' ? 'Portafolio' : 'Portfolio'}</a></li>
           </ul>
         </div>
         <div>
-          <h5 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Legales</h5>
+          <h5 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">{lang === 'es' ? 'Legales' : 'Legal'}</h5>
           <ul class="space-y-3">
-            <li><a href="/legal" class="text-gray-500 hover:text-brand-cyan transition-colors">Privacidad</a></li>
+            <li><a href="/legal" class="text-gray-500 hover:text-brand-cyan transition-colors">{lang === 'es' ? 'Privacidad' : 'Privacy'}</a></li>
             <li><a href="/legal" class="text-gray-500 hover:text-brand-cyan transition-colors">Cookies</a></li>
           </ul>
         </div>

@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://monicamontufar.com',
   i18n: {
     defaultLocale: "es",
     locales: ["es", "en"],
