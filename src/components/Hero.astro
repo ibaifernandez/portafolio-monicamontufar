@@ -1,14 +1,24 @@
 ---
 // Hero.astro
-import Image from "astro/components/Image.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section class="relative w-full min-h-[90vh] flex items-center pt-24 pb-12">
-  <div class="container mx-auto px-6 max-w-7xl">
+<section class="relative w-full min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0 z-0">
+    <img src="/images/Fondo2.png" alt="" class="w-full h-full object-cover opacity-30" aria-hidden="true" />
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-bg via-brand-bg/80 to-transparent"></div>
+  </div>
+
+  <!-- Top-right logo -->
+  <div class="absolute top-6 right-6 z-20 hidden md:block">
+    <img src="/favicon.png" alt="Mónica Montúfar" class="w-12 h-12 object-contain" />
+  </div>
+
+  <div class="container mx-auto px-6 max-w-7xl relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       
       <!-- Text Content -->
@@ -16,7 +26,7 @@ const t = useTranslations(lang);
         
         <!-- Badge -->
         <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
-          <img src="/images/icon.png" alt="Icon" class="w-5 h-5 object-contain" />
+          <img src="/favicon.png" alt="Icon" class="w-5 h-5 object-contain" />
           <span class="text-sm font-medium tracking-wide text-brand-salmon">{t('hero.greeting')}</span>
         </div>
         
@@ -30,7 +40,7 @@ const t = useTranslations(lang);
           {t('hero.subtitle')}
         </h2>
         <h3 class="text-lg lg:text-xl font-medium text-brand-cyan mt-1">
-          Especialista en Email Marketing y automatización
+          {lang === 'es' ? 'Especialista en Email Marketing y automatización' : 'Email Marketing & Automation Specialist'}
         </h3>
 
         <!-- Paragraph -->
@@ -43,7 +53,7 @@ const t = useTranslations(lang);
           <a href="#portafolio" class="px-8 py-3.5 bg-brand-salmon hover:bg-red-500 text-white font-semibold rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(255,87,87,0.3)] hover:shadow-[0_0_30px_rgba(255,87,87,0.5)] flex items-center gap-2">
             {t('hero.cta.portfolio')} <span class="text-xl">↘</span>
           </a>
-          <a href="/cv.pdf" download="Mónica Montufar CV 2026" class="px-8 py-3.5 bg-white text-brand-bg font-semibold rounded-full hover:bg-gray-200 transition-all duration-300 flex items-center gap-2">
+          <a href="/cv.pdf" download="CV 2026 Mónica Montúfar" class="px-8 py-3.5 bg-white text-brand-bg font-semibold rounded-full hover:bg-gray-200 transition-all duration-300 flex items-center gap-2">
             {t('hero.cta.cv')} 
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
           </a>
@@ -52,16 +62,16 @@ const t = useTranslations(lang);
 
       <!-- Image Content -->
       <div class="order-1 lg:order-2 flex justify-center lg:justify-end relative">
-        <div class="relative w-72 h-72 sm:w-96 sm:h-96 lg:w-[450px] lg:h-[450px]">
-          <!-- Deco Background behind image -->
+        <div class="relative w-72 sm:w-96 lg:w-[450px]">
+          <!-- Glow -->
           <div class="absolute inset-0 bg-gradient-to-tr from-brand-salmon/20 to-brand-cyan/20 rounded-full blur-2xl animate-pulse"></div>
           
-          <!-- Arch-shaped frame for the picture (based on screenshot design) -->
-          <div class="relative w-full h-full overflow-hidden rounded-[40%_40%_0_0] border-t-4 border-white/10 bg-white/5 backdrop-blur-sm">
+          <!-- Full photo, no aggressive clip -->
+          <div class="relative w-full overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl">
             <img 
-               src="/images/Mon.png" 
+               src="/images/Mon-full.png" 
                alt="Mónica Montúfar" 
-               class="w-full h-full object-cover object-top"
+               class="w-full h-full object-cover object-center"
                fetchpriority="high"
             />
           </div>
