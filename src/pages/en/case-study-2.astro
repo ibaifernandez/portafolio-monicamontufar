@@ -1,5 +1,19 @@
 ---
-// src/pages/en/case-study-2.astro
-import Page from "../caso-de-exito-2.astro";
+import CaseStudyLayout from "../../layouts/CaseStudyLayout.astro";
+import CaseStudyHero from "../../components/CaseStudyHero.astro";
+import CaseStudyResults from "../../components/CaseStudyResults.astro";
+import CaseStudyStack from "../../components/CaseStudyStack.astro";
+import CaseStudyFlipbook from "../../components/CaseStudyFlipbook.astro";
+import { caseStudy2 } from "../../data/caseStudy2";
+
+const content = caseStudy2.en;
 ---
-<Page />
+
+<CaseStudyLayout title={content.hero.title} description={content.hero.description}>
+  <main>
+    <CaseStudyHero {...content.hero} />
+    <CaseStudyResults {...content.results} />
+    <CaseStudyStack items={content.stack} />
+    <CaseStudyFlipbook pdfUrl={content.pdfUrl} />
+  </main>
+</CaseStudyLayout>
