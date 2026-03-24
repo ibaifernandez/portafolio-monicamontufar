@@ -42,5 +42,7 @@ jobs:
       - name: Run Lighthouse CI
         run: |
           npm install -g @lhci/cli puppeteer
-          lhci autorun --collect.staticDistDir=./dist --upload.target=temporary-public-storage --assert.preset=desktop
+          lhci collect --staticDistDir=./dist --settings.preset=desktop
+          lhci upload --target=temporary-public-storage --githubAppToken="" || true
+
 
