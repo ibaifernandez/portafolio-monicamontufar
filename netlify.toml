@@ -20,7 +20,8 @@
   compress = true
 
 # [SISTEMA DE DEPLOY INTELIGENTE]
-# Solo realiza el build si el mensaje de commit incluye el flag "[deploy]"
-# Ejemplo: git commit -m "feat: New feature [deploy]"
+# Solo realiza el build si hay cambios en el código fuente o activos críticos.
+# Ignora cambios en documentación, logs y archivos de sistema.
 [build]
-  ignore = "git log -1 --pretty=%B | grep -qv '\\[deploy\\]'"
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF . -- ':!docs' ':!.gemini' ':!task.md' ':!walkthrough.md' ':!ROADMAP.md' ':!CHANGELOG.md' ':!BACKLOG.md'"
+
