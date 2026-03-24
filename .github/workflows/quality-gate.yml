@@ -1,0 +1,46 @@
+name: Quality Gate — portafolio.monicamontufar.com
+
+on:
+  push:
+    branches: [staging]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality-gate:
+    name: Build + Type Check + E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Astro type check
+        run: npx astro check
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E smoke tests (+ A11y)
+        run: npx playwright test tests/e2e/smoke.spec.ts
+        env:
+          CI: true
+
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli puppeteer
+          lhci autorun --collect.staticDistDir=./dist --upload.target=temporary-public-storage --assert.preset=desktop
+
